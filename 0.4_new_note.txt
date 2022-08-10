@@ -1,0 +1,29 @@
+title User creates new note
+
+actor User
+participant Browser
+participant Server
+
+note right of User: 
+Write text in input text field, then
+Click send button
+end note
+User->Browser:
+Browser->Server: HTTP POST: https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Server: Server save data
+Server-->Browser: Response with status 302 (redirect to: /exampleapp/notes)
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: text/html HTML Code
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: text/css main.css
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: application/javascript main.js
+note over Browser: 
+The browser executes code that
+get data from the server
+end note
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: application/json data.json
+note over Browser
+Browser render the data in an unordered list
+end note

@@ -1,0 +1,17 @@
+title Request to notes app (SPA version)
+
+actor User
+participant Browser
+participant Server
+
+note right of User: 
+Write text in input text field, then
+Click send button
+end note
+User->Browser:
+note over Browser
+after the submit the browser push new note object
+to notes array, the call sendToServer() function
+end note
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+Server-->Browser: application/json {"message":"note created"}

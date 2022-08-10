@@ -1,0 +1,23 @@
+title Request to notes app (SPA version)
+
+participant Browser
+participant Server
+
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/spa
+Server-->Browser: text/html HTML Code
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: text/css main.css
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server-->Browser: application/javascript main.js
+note over Browser: 
+Browser create an eventListener for form submit.
+Browser request data from /example/data.json.
+end note
+Browser->Server: HTTP GET: https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: application/json data.json
+note over Browser
+Browser waits for ready state 4 and status 200, 
+then execute redrawNotes(), this function 
+creates an unordered list for all items in notes 
+array.
+end note
